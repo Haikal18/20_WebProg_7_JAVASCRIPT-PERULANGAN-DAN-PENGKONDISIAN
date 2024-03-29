@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Website Input Data Mahasiswa</title>
+    <style>
+        span{
+            color: red;
+        }
+        .form-container{
+            box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+        }
+    </style>
+
+</head>
+<body>
+    <div class="form-container">
+        <form id="Formulir_data_diri" style="padding-left: 40px; padding-bottom: 40px;">
+            <!-- Text area Atas -->
+            <h1 align="center">Website Input Data Mahasiswa</h1>
+            <p>Isi Data Mahasiswa</p>
+            <!-- Akhir Teks area atas -->
+            <br>
+            <!-- Input nama dan nim -->
+                <label for="nim">Nim <span>*</span> : </label>
+                <input type="text" id="nim" name="nim" required><br><br>
+                <label for="nama">Nama <span>*</span> : </label>
+                <input type="text" id="nama" name="nama" required><br><br>
+            <!-- Akhir input nama nim -->
+            <br>
+            <!-- input jenis kelamin dengan radio button  -->
+            <p>Jenis Kelamin : </p>
+                <input type="radio" id="JenisKelamin" name="JenisKelamin">
+                <label for="JenisKelamin">Pria </label>
+                <input type="radio" id="wanita" name="JenisKelamin">
+                <label for="JenisKelamin">Wanita </label><br><br>
+            <!-- Akhir input jenis kelamin dengan radio button -->
+            <br>
+            <!-- Input Tahun Masuk -->
+                <label for="TahunMasuk">Tahun Masuk <span>*</span> : </label>
+                <input type="text" id="TahunMasuk" name="TahunMasuk"><br><br>
+            <!-- Akhir Input Tahun Masuk  -->
+            <br>
+            <input type="submit" value="Submit">
+        </form>
+    </div>
+    
+
+    <script>
+        document.getElementById("Formulir_data_diri").addEventListener("submit", function(event) {
+            event.preventDefault();
+
+            // Ambil nilai input dari form
+            let nim = document.getElementById("nim").value;
+            let nama = document.getElementById("nama").value;
+            let jenis_Kelamin = document.querySelector('input[name="JenisKelamin"]:checked').value;
+            let tahunMasuk = parseInt(document.getElementById("TahunMasuk").value);
+
+            // Validasi tahun masuk berupa 4 angka 
+            if (isNaN(tahunMasuk) || tahunMasuk.toString().length < 4) {
+                alert("Tahun masuk harus memiliki 4 angka");
+                return;
+            }
+
+            // Menghitung semester berdasarkan tahun masuk
+            let semester = Math.ceil((new Date().getFullYear() - tahunMasuk) * 2);
+
+            // Menampilkan data dalam popup
+            let popupMessage = `Nim anda: ${nim},
+                    \nNama anda: ${nama},
+                    \nJenis Kelamin anda: ${jenis_Kelamin},
+                    \nTahun Masuk anda: ${tahunMasuk},
+                    \ndan anda berarti sekarang semester: ${semester}`;
+            alert(popupMessage);
+        });
+    </script>
+
+</body>
+</html>
