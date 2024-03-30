@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Website Input Data Mahasiswa</title>
+    <style>
+        span {
+            color: red;
+        }
+        .form-container {
+            box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+        }
+    </style>
+    <script type="text/javascript">
+        function Formulir_data_diri() {
+            var nim = document.getElementById("nim").value;
+            var nama = document.getElementById("nama").value;
+            var jenisKelamin = document.querySelector('input[name="JenisKelamin"]:checked').value;
+            var tahunMasuk = document.getElementById("TahunMasuk").value;
+
+            if (isNaN(tahunMasuk) || tahunMasuk.toString().length < 4) {
+                alert("Tahun masuk harus memiliki 4 angka");
+                return;
+            }
+
+            let semester = Math.ceil((new Date().getFullYear() - tahunMasuk) * 2);
+
+            let popupMessage = 
+                    `Nim anda: <strong>${nim}</strong>,<br>
+                    Nama anda: <strong>${nama}</strong>,<br>
+                    Jenis Kelamin anda: <strong>${jenisKelamin}</strong>,<br><br>
+                    Tahun Masuk anda:${tahunMasuk},<br>
+                    Anda berarti sekarang<br>
+                    semester: <strong>${semester}</strong>`;
+
+            var newTab = window.open("", "_blank", "width=400,height=300");
+            newTab.document.write("<h1>Hasil Perhitungan Semester</h1>");
+            newTab.document.write("<p>" + popupMessage + "</p>");
+            newTab.document.close();
+        }
+    </script>
+</head>
+<body>
+    <div class="form-container">
+        <form id="Formulir_data_diri" style="padding-left: 40px; padding-bottom: 40px;">
+            <h1 align="center">Website Input Data Mahasiswa</h1>
+            <p>Isi Data Mahasiswa</p>
+            <label for="nim">Nim <span>*</span> : </label>
+            <input type="text" id="nim" name="nim" required><br><br>
+            <label for="nama">Nama <span>*</span> : </label>
+            <input type="text" id="nama" name="nama" required><br><br>
+            <p>Jenis Kelamin : </p>
+            <input type="radio" id="JenisKelaminPria" name="JenisKelamin" value="Pria">
+            <label for="JenisKelaminPria">Pria</label>
+            <input type="radio" id="JenisKelaminWanita" name="JenisKelamin" value="Wanita">
+            <label for="JenisKelaminWanita">Wanita</label><br><br>
+            <label for="TahunMasuk">Tahun Masuk <span>*</span> : </label>
+            <input type="text" id="TahunMasuk" name="TahunMasuk"><br><br>
+            <input type="button" value="Submit" onclick="Formulir_data_diri();">
+        </form>
+    </div>
+</body>
+</html>

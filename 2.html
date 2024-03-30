@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kontrak Mata Kuliah</title>
+</head>
+<body>
+    <fieldset>
+        <legend>Kontrak Mata Kuliah</legend>
+        <p id="nim"></p>
+        Mata Kuliah yang di kontrak:
+        <ul id="nama"></ul>
+        <p id="Tahunmasuk"></p>
+    </fieldset>
+    
+    <script>
+        let urlParams = new URLSearchParams(window.location.search);
+        let nim = urlParams.get("nim");
+        let nama = urlParams.get("nama");
+        let TahunMasuk = urlParams.get("TahunMasuk");
+        let jenis_Kelamin = urlParams.get("JenisKelamin");
+
+        // Menampilkan data pada halaman kedua
+        document.getElementById("nim").textContent = "NIM: " + nim;
+        document.getElementById("nama").innerHTML = "<li>Nama: " + nama + "</li>";
+        document.getElementById("Tahunmasuk").textContent = "Tahun Masuk: " + TahunMasuk;
+    </script>
+</body>
+</html>
