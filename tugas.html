@@ -47,27 +47,22 @@
         </form>
     </div>
     
-
     <script>
         document.getElementById("Formulir_data_diri").addEventListener("submit", function(event) {
             event.preventDefault();
 
-            // Ambil nilai input dari form
             let nim = document.getElementById("nim").value;
             let nama = document.getElementById("nama").value;
             let jenis_Kelamin = document.querySelector('input[name="JenisKelamin"]:checked').value;
             let tahunMasuk = parseInt(document.getElementById("TahunMasuk").value);
-
-            // Validasi tahun masuk berupa 4 angka 
+ 
             if (isNaN(tahunMasuk) || tahunMasuk.toString().length < 4) {
                 alert("Tahun masuk harus memiliki 4 angka");
                 return;
             }
 
-            // Menghitung semester berdasarkan tahun masuk
             let semester = Math.ceil((new Date().getFullYear() - tahunMasuk) * 2);
 
-            // Menampilkan data dalam popup
             let popupMessage = `Nim anda: ${nim},
                     \nNama anda: ${nama},
                     \nJenis Kelamin anda: ${jenis_Kelamin},
